@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+// ブログポストを作成するフォームの表示…
+Route::get('/post/create', 'PostController@create');
+
+// 新しいブログポストを保存…
+Route::post('/post', 'PostController@store');
