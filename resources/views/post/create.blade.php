@@ -11,7 +11,10 @@
     <title> test </title>
 </head>
 <body>
-    <form action="http://192.168.33.10/post" method="post">
+    <form action="http://192.168.33.10/post"
+        method="post"
+        enctype="multipart/form-data">
+
         <?php echo csrf_field(); ?>
         <div>
             title:
@@ -21,8 +24,11 @@
             body:
             <input type="text" name="body" value="fuga"></input>
             <input type="submit"></input>
+            <input type="file" name="file">
+
         </div>
     </form>
+    {{ get_class($errors) }}
     @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>

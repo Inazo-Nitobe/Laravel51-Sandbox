@@ -10,6 +10,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class PostController extends Controller
 {
@@ -32,6 +33,7 @@ class PostController extends Controller
     public function store(Request $request)
     //public function store()
     {
+        /*
         $i = 0;
         // ブログポストのバリデーションと保存…
         $this->validate($request, [
@@ -40,6 +42,22 @@ class PostController extends Controller
             //'title' => 'required',
             'body' => 'required',
         ]);
+        */
+
+
+        $validator = Validator::make($request->all(), [
+            //'title' => 'required|unique:posts|max:255',
+            'title' => 'required|max:10',
+            'body' => 'required',
+            'file' => 'required|max:10240'
+        ]);
+
+        if ($validator->fails()) {
+            return redirect('post/create')
+                ->withErrors($validator)
+                ->withInput();
+        }
+
 
     }
 }
