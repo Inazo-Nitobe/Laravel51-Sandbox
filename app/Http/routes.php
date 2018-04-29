@@ -15,6 +15,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/myform', function () {
+    return view('form');
+});
+
 // ブログポストを作成するフォームの表示…
 Route::get('/post/create', 'PostController@create');
 
