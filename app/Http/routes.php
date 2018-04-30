@@ -11,6 +11,7 @@
 |
 */
 
+/*
 Route::get('/', function (Illuminate\Http\Request $request) {
 //    return view('welcome');
     $param1 = $request->session()->get('param1', '0');
@@ -24,4 +25,17 @@ Route::post('/', function (Illuminate\Http\Request $request) {
     $request->session()->put('param1', $param1);
     return view('index', ['param1' => $param1]);
 });
+*/
+Route::get('/', function (Illuminate\Http\Request $request) {
+//    return view('welcome');
+    $param1 = session('param1', 0);
+    return view('index', ['param1' => $param1]);
+});
 
+
+Route::post('/', function (Illuminate\Http\Request $request) {
+//    return view('welcome');
+    $param1 = $request->get('param1');
+    session(['param1' => $param1]);
+    return view('index', ['param1' => $param1]);
+});
