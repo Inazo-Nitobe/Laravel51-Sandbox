@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Support\Facades\Session;
+
 /*
 Route::get('/', function (Illuminate\Http\Request $request) {
 //    return view('welcome');
@@ -28,7 +30,8 @@ Route::post('/', function (Illuminate\Http\Request $request) {
 */
 Route::get('/', function (Illuminate\Http\Request $request) {
 //    return view('welcome');
-    $param1 = session('param1', 0);
+    //$param1 = session('param1', 0);
+    $param1 = Session::get('param1', 0);
     return view('index', ['param1' => $param1]);
 });
 
@@ -36,6 +39,8 @@ Route::get('/', function (Illuminate\Http\Request $request) {
 Route::post('/', function (Illuminate\Http\Request $request) {
 //    return view('welcome');
     $param1 = $request->get('param1');
-    session(['param1' => $param1]);
+    Session::put('param1', $param1);
+    //session(['param1' => $param1]);
+    //Session::save();
     return view('index', ['param1' => $param1]);
 });
